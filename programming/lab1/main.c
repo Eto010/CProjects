@@ -3,6 +3,8 @@
 
 int main()
 {
-    struct bankAccount arr[100] = arrBankFillRand(100);
-    
+    struct bankAccount *arr = arrBankFillRand(100);
+    struct bankAccount *arrSort = insertSort(arr, 100);
+    printArrBankAcc(arr, 100);
+    printArrBankAcc(arrSort, 100);
 }

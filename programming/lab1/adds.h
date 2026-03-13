@@ -9,7 +9,8 @@ struct bankAccount
     unsigned int deadline;
 };
 int genRand(int a, int b);
-bankAccount *arrBankFillRand(int n);
-void printArrBankAcc(bankAccount[]);
+struct bankAccount *arrBankFillRand(int n);
+void printArrBankAcc(struct bankAccount[], int len);
+struct bankAccount *insertSort(struct bankAccount arr[], int n);
 
-#endif // FUNC_H
+#endif // ADDS_H
