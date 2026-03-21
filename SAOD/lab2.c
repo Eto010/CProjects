@@ -13,9 +13,9 @@ int bubbleSort(int arr[], int n)
     {
         arrIn[i] = arr[i];
     }
-    for(int i = 0; i < n; i++)
+    for(int i = 0; i < n - 1; i++)
     {
-        for(int j = n - 1; j > 0; j--)
+        for(int j = n - 1; j > i; j--)
         {
             c = c + 1;
             if (arrIn[j] < arrIn[j - 1])
@@ -23,14 +23,16 @@ int bubbleSort(int arr[], int n)
                 m = m + 1;
                 int temp = arrIn[j];
                 arrIn[j] = arrIn[j - 1];
+                m = m + 1;
                 arrIn[j - 1] = temp;
+                m = m + 1;
             }
         }
     }
     int x = c + m;
     if ((ctrlSum(arrIn, n) == sum) && (lineCount(arrIn, n) == 1))
     { 
-    printf("%d + %d = %d\n", c, m, x);
+        return x;
     }
 }
 
@@ -51,34 +53,16 @@ int main()
     int *arrHigh3 = masGenHigh(300);
     int *arrHigh4 = masGenHigh(400);
     int *arrHigh5 = masGenHigh(500);
-    printf("Bubble sort : \n For 100 elements: \n High: \n" );
-    bubbleSort(arrHigh1, 100);
-    printf("Rand:\n");
-    bubbleSort(arrRand1, 100);
-    printf("Low: \n");
-    bubbleSort(arrLow1, 100);
-    printf("For 200 elements: \n High: \n" );
-    bubbleSort(arrHigh2, 200);
-    printf("Rand:\n");
-    bubbleSort(arrRand2, 200);
-    printf("Low: \n");
-    bubbleSort(arrLow2, 200);
-    printf("For 300 elements: \n High: \n" );
-    bubbleSort(arrHigh3, 300);
-    printf("Rand:\n");
-    bubbleSort(arrRand3, 300);
-    printf("Low: \n");
-    bubbleSort(arrLow3, 300);
-    printf("For 400 elements: \nHigh: \n" );
-    bubbleSort(arrHigh4, 400);
-    printf("Rand:\n");
-    bubbleSort(arrRand4, 400);
-    printf("Low: \n");
-    bubbleSort(arrLow4, 400);
-    printf("\n For 500 elements: \nHigh: \n" );
-    bubbleSort(arrHigh5, 500);
-    printf("Rand:\n");
-    bubbleSort(arrRand5, 500);
-    printf("Low: \n");
-    bubbleSort(arrLow5, 500);
+    int mc1 = (100 * 100 - 100) / 2 * 4;
+    int mc2 = (200 * 200 - 200) / 2 * 4;
+    int mc3 = (300 * 300 - 300) / 2 * 4;
+    int mc4 = (400 * 400 - 400) / 2 * 4;
+    int mc5 = (500 * 500 - 500) / 2 * 4;
+    printf(" N | M+Cтеоретич. | Мфакт+Сфакт               \n");
+    printf("   |              | Убыв. | Случ. | Возр.     \n");
+    printf("100| %d        |%d   | %d  | %d \n", mc1, bubbleSort(arrLow1, 100), bubbleSort(arrRand1, 100), bubbleSort(arrHigh1, 100));
+    printf("200| %d        |%d   | %d  | %d \n", mc2, bubbleSort(arrLow2, 200), bubbleSort(arrRand2, 200), bubbleSort(arrHigh2, 200));
+    printf("300| %d       |%d   | %d  | %d \n", mc3, bubbleSort(arrLow3, 300), bubbleSort(arrRand3, 300), bubbleSort(arrHigh3, 300));
+    printf("400| %d       |%d   | %d  | %d \n", mc4, bubbleSort(arrLow4, 400), bubbleSort(arrRand4, 400), bubbleSort(arrHigh4, 400));
+    printf("500| %d       |%d   | %d  | %d \n", mc5, bubbleSort(arrLow5, 500), bubbleSort(arrRand5, 500), bubbleSort(arrHigh5, 500));
 }
