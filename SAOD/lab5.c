@@ -1,5 +1,6 @@
 //ShellSort
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h> 
 #include "func.h"
 
@@ -37,10 +38,12 @@ int shellSort(int arr[], int n)
     if (sum == ctrlSum(arrIn, n) && lineCount(arrIn, n) == 1)
     {
         int x = c + m;
+        free(arrDiv);
         return x;
     }
     else
     {
+        free(arrDiv);
         return 0;
     }
 }
@@ -78,10 +81,12 @@ int knutShellSort(int arr[], int n)
     if (sum == ctrlSum(arrIn, n) && lineCount(arrIn, n) == 1)
     {
         int x = c + m;
+        free(arrDiv);
         return x;
     }
    else
     {
+        free(arrDiv);
         return 0;
     } 
 }
@@ -177,4 +182,7 @@ int main()
     printf("                | %d       | ", knutShellSort(arrRand5, 500));
     printArrayStr(d5);
     printf("           | %d\n", shellSort(arrRand5, 500));
+    free(arrRand1); free(arrRand2); free(arrRand3); free(arrRand4); free(arrRand5);
+    free(k1); free(k2); free(k3); free(k4); free(k5);
+    free(d1); free(d2); free(d3); free(d4); free(d5);
 }

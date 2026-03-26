@@ -130,3 +130,28 @@ void printArrayStr(int arr[])
         }
     }
 }
+int *masGenRandSort(int n)
+{
+    int *arrIn = malloc(n * sizeof *arrIn);
+    if (!arrIn) return NULL;
+
+    for (int i = 0; i < n; i++) {
+        arrIn[i] = 1 + rand() % n; 
+    }
+
+    for (int i = 0; i < n - 1; i++)
+    {
+        int k = i;
+        for (int j = i; j < n; j++)
+        {
+            if (arrIn[j] < arrIn[k])
+            {
+                k = j;
+            }
+        }
+        int temp = arrIn[i];
+        arrIn[i] = arrIn[k];
+        arrIn[k] = temp;
+    }
+    return arrIn;
+}
