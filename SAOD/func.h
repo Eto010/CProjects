@@ -6,5 +6,7 @@ int lineCount(int arr[], int n);
 int *masGenRand(int x);
 int *masGenLow(int x);
 int *masGenHigh(int x);
-
+int *divSearch(int n);
+int *knutSearch(int n);
+void printArrayStr(int arr[]);
 #endif // FUNC_H

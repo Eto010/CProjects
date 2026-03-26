@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "func.h"
 
 int ctrlSum(int arr[], int n)
@@ -53,4 +54,79 @@ int *masGenRand(int x)
     }
 
     return arrIn;
+}
+
+int *divSearch(int n)
+{
+    float nd = (float)n; 
+    float sqn = sqrtf(nd);
+    int sq = (int)sqn + 1;
+    int c = 0;
+    for(int i = 1; i < sq; i++)
+    {
+        if (n % i == 0)
+        {
+            c++;
+        }
+    }
+    int *arrIn = malloc((c + 1) * sizeof *arrIn);
+    arrIn[0] = c;
+    arrIn[c] = 1;
+    c = 1;
+    for(int i = sq; i > 1; i--)
+    {
+        if (n % i == 0)
+        {
+            arrIn[c] = i;
+            c++;
+        }
+    }
+    return arrIn;
+}
+int *knutSearch(int n)
+{
+    float nf = log2f((float)n);
+    int log = (int)nf + 1;
+    int c = 0; int hi = 0; int h = 1;
+    while(hi < log)
+    {
+        hi = 2*h + 1;
+        c++;
+        h = hi;
+    }
+    int *arrIn = malloc((c + 1) * sizeof *arrIn);
+    arrIn[0] = c;
+    h = 1; hi = 0; c = 1;
+    while(hi < log)
+    {
+        hi = 2*h + 1;
+        arrIn[c] = hi;
+        c++;
+        h = hi;
+    }
+    int *arrRet = malloc((c + 2) * sizeof *arrIn);
+    arrRet[0] = arrIn[0] + 1;
+    arrRet[c] = 1;
+    c = 1;
+    for (int i = arrIn[0]; i > 0; i--)
+    {
+        arrRet[c] = arrIn[i];
+        c++;
+    }
+    return arrRet;
+}
+
+void printArrayStr(int arr[])
+{
+    int c = arr[0];
+    for(int i = 1; i <= c; i++){
+        if (i != c)
+        {
+            printf("%d, ", arr[i]);
+        }
+        else
+        {
+            printf("%d", arr[i]);
+        }
+    }
 }
