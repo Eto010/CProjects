@@ -1,0 +1,4 @@
+/home/vlad/CProjects/programming/lab2/build/CMakeFiles/UTIL_LIB.dir
+/home/vlad/CProjects/programming/lab2/build/CMakeFiles/main.dir
+/home/vlad/CProjects/programming/lab2/build/CMakeFiles/edit_cache.dir
+/home/vlad/CProjects/programming/lab2/build/CMakeFiles/rebuild_cache.dir
