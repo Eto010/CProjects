@@ -10,7 +10,6 @@ struct phones {
 };
 
 struct phones *sortPhones(struct phones arr[], int n) {
-    // Копируем данные из входного массива
     struct phones *arrIn = malloc(n * sizeof(struct phones));
     if (arrIn == NULL) {
         printf("Ошибка выделения памяти!\n");
@@ -20,12 +19,10 @@ struct phones *sortPhones(struct phones arr[], int n) {
         arrIn[i] = arr[i];
     }
 
-    // Сортировка вставками по post, затем по number
     for (int i = 1; i < n; i++) {
-        struct phones temp = arrIn[i];  // сохраняем всю структуру
+        struct phones temp = arrIn[i];  
         int j = i - 1;
 
-        // Сначала сортируем по post
         while (j >= 0 && (
             arrIn[j].post > temp.post ||
             (arrIn[j].post == temp.post && arrIn[j].number > temp.number)
