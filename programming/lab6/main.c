@@ -19,6 +19,10 @@ int main()
         printf("thread creation error\n");
         exit(EXIT_FAILURE);
     }
+    if (pthread_join(thread, NULL) != 0) {
+            perror("thread waiting error\n");
+            exit(EXIT_FAILURE);
+        }
     for(int i = 1; i < 6; i++)
     {
         printf("parent thread: %d\n", i);
