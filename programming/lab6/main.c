@@ -3,8 +3,14 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+void cleanup_handler(void* arg)
+{
+    printf("thread cleaning up before termination\n");
+}
+
 void * thread_func(void *arg)
 {
+    pthread_cleanup_push(cleanup_handler, NULL);
     pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
     pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS, NULL);
     char **thread_fill = (char**)arg;
@@ -14,6 +20,7 @@ void * thread_func(void *arg)
         sleep(1);
     }
     printf("the thread has ended\n");
+    pthread_cleanup_pop(1);
 }
 
 int main()
@@ -39,7 +46,7 @@ int main()
         if (pthread_cancel(threads[i]) != 0) {
             perror("error cancelling thread");
         } else {
-            printf("main thread: thread %d cancelled\n", i);
+            printf("Main thread: thread %d cancelled\n", i);
         }
     }
     for(int i = 0; i < 4; i++)
