@@ -1,13 +1,17 @@
 #include <stdio.h>
 #include <pthread.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 void * thread_func(void *arg)
 {
+    pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
+    pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS, NULL);
     char **thread_fill = (char**)arg;
     for(int i = 0; i < 5; i++)
     {
         printf("%s\n", thread_fill[i]);
+        sleep(1);
     }
     printf("the thread has ended\n");
 }
@@ -27,6 +31,15 @@ int main()
         {
             printf("thread creation error\n");
             exit(EXIT_FAILURE);
+        }
+    }
+    sleep(2);
+    printf("main thread: cancelling all child threads after 2 seconds\n");
+    for (int i = 0; i < 4; i++) {
+        if (pthread_cancel(threads[i]) != 0) {
+            perror("error cancelling thread");
+        } else {
+            printf("main thread: thread %d cancelled\n", i);
         }
     }
     for(int i = 0; i < 4; i++)
